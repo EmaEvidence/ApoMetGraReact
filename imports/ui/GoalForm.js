@@ -31,15 +31,15 @@ class GoalForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="goal-form">
         {
           this.state.error && <p>{ this.state.error}</p>
         }
         <input
-          type="text" placeholder="Type your Resolution"
+          type="text" placeholder="Type your Goal"
           ref={(input) => { this.name = input}}
         />
-        <button onClick={this.submitForm}>Submit</button>
+        <button onClick={this.submitForm} class="btn btn-secondary">Submit</button>
       </div>
 
     )

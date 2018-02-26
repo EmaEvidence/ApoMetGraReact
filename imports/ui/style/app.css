@@ -1,0 +1,132 @@
+body {
+  background-color: aliceblue;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.reg-form-container {
+  position: absolute;
+  top: 30%;
+  padding: 2%;
+  width: 30%;
+  margin-left: 10%;
+}
+
+.reg-form-container input, button {
+  width: 98%;
+  margin: 2%;
+}
+
+.reg-form-container::before {
+  content: 'Welcome to Resolutions';
+  text-align: center;
+  font-size: 30px; 
+}
+
+.reg-form-container button {
+  width: 98%;
+  margin: 2%;
+}
+
+.resolution-container {
+  margin-top: 8%;
+  width: 50%;
+}
+
+.logout {
+  right: 0%;
+  width: auto;
+}
+
+.resolution-form-container {
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  padding: 0 3%;
+  width: 100%;
+  background: rgb(232, 244, 255);
+}
+
+.resolution-form-container a h1 {
+  color: teal;
+}
+
+.resolution-form-container .btn {
+  width: auto;
+}
+
+.resolution-form-container input {
+  width: 50.2%;
+  padding-left: 2%;
+}
+
+.resolution-card {
+  margin: 1%;
+  list-style-type: none;
+  padding: 3%;
+  box-shadow: 0 1px 1px 2px thistle;
+}
+
+.goals {
+  list-style-type: none;
+}
+
+.resolution-control {
+  display: flex;
+  flex-direction: row;
+}
+
+.resolution-control button {
+  width: auto;
+  color: teal;
+  margin: 1px;
+}
+
+.resolution-name {
+  font-size: 20px;
+  /* background: whitesmoke; */
+  color: teal;
+  margin-bottom: 1%;
+  border: 1px solid thistle;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2%;
+}
+
+.goals {
+  border: 1px solid thistle;
+  padding: 5% 10%;
+  max-height: 300px;
+  overflow: auto;
+  margin-bottom: 1%;
+  color: teal;
+}
+
+.goal-form {
+  border: 1px solid thistle;
+  padding: 0 2%;
+}
+
+.goal-form input {
+  padding-left: 2%; 
+  width: 68%;
+}
+
+.goal-form button {
+  width: 28%;
+}
+
+.goal-name {
+  margin-left: 2%;
+}
+
+.individual-goal {
+  vertical-align: middle;
+}
+
+.individual-goal label {
+  width: 100%;
+}

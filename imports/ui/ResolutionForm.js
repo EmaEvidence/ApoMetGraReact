@@ -30,7 +30,8 @@ class ResolutionForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="navbar navbar-expand-lg navbar-light resolution-form-container">
+        <a class="navbar-brand" href="#"><h1>Resolutions</h1></a>
         {
           this.state.error && <p>{this.state.error}</p>
         }
@@ -38,7 +39,12 @@ class ResolutionForm extends Component {
           type="text" placeholder="Type your Resolution"
           ref={(input) => { this.name = input}}
         />
-        <button onClick={this.submitForm}>Submit</button>
+        <button onClick={this.submitForm} className="btn btn-secondary">Submit</button>
+        <button onClick={() => { 
+            Meteor.logout();
+            this.props.client.resetStore();
+          }} className="btn btn-info logout"> LogOut 
+        </button>
       </div>
 
     )

@@ -32,7 +32,7 @@ class RegisterUser extends Component {
           />
         </div>
         <div>
-          <button type="submit">Register User</button>
+          <button type="submit" className="btn btn-secondary">Register User</button>
         </div>
       </form>
     )
