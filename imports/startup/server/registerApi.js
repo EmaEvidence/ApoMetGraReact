@@ -1,5 +1,6 @@
 import { createApolloServer } from 'meteor/apollo';
 import { makeExecutableSchema } from 'graphql-tools';
+import cors from 'cors';
 import merge from 'lodash/merge';
 
 import testSchema from '../../api/Test/test.graphql';
@@ -19,4 +20,9 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 //  hkjhkddsklsfdfshhjgjhg
-createApolloServer({schema});
+createApolloServer({schema}, {
+  configServer: (graphQLServer) => {
+    graphQLServer.use(cors())
+  }
+});
+

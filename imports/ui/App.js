@@ -8,6 +8,8 @@ import ResolutionForm from './ResolutionForm';
 import GoalForm from './GoalForm';
 import Goal from './Resolution/Goal';
 
+import './style/app';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -21,38 +23,46 @@ class App extends Component {
   render() {
     if (this.props.data.loading) return null;
     return (
-      <div>
+      <div className="wrapper">
+        {
+            this.props.data.user._id && <ResolutionForm client={this.props.client} />
+        }
         <RegistrationForm user={this.props.data.user} client={this.props.client} />
-        {
-          this.props.data.user._id && <ResolutionForm />
-        }
-        {
-          this.props.data.user._id && (
-            <ul>
-              {
-                this.props.data.resolutions.map((resolution) => (
-                  <li key={resolution._id}>
-                    <span style={{
-                      textDecoration: resolution.completed ? 'line-through' : 'none',
-                    }}>
-                      {resolution.name}
-                    </span>
-                    <ul>
-                      {
-                        resolution.goals.map((goal) => (
-                          <Goal goal={goal} key={goal._id} />
-                        ))
-                      }
-                    </ul>
-                    <b><GoalForm resolutionId={resolution._id}></GoalForm></b>
-                    <button onClick={() => {this.editResolution(resolution._id)}}>!</button>
-                    <button onClick={() => {this.deleteResolution(resolution._id)}}>X</button>
-                  </li>
-                ))
-              }
-          </ul>
-        )
-        }
+        <div className="resolution-container">
+          {
+            this.props.data.user._id && (
+              <ul className="resolution-list">
+                {
+                  this.props.data.resolutions.map((resolution) => (
+                    <li key={resolution._id} className="resolution-card">
+                      <div className="resolution-name">
+                        <span style={{
+                          textDecoration: resolution.completed ? 'line-through' : 'none',
+                        }}>
+                          {resolution.name}
+                        </span>
+                        <span className="resolution-control">
+                          <button className="btn btn-info" onClick={() => {this.editResolution(resolution._id)}}>!</button>
+                          <button className="btn btn-info" onClick={() => {this.deleteResolution(resolution._id)}}>X</button>
+                        </span>
+                      </div>
+                      <ul className="goals">
+                        {
+                          resolution.goals.map((goal) => (
+                            <Goal goal={goal} key={goal._id} />
+                          ))
+                        }
+                      </ul>
+                      <div>
+                        <GoalForm resolutionId={resolution._id} />
+                      </div>
+                    </li>
+                  ))
+                }
+            </ul>
+          )
+          }
+        </div>
       </div>
     );
   }

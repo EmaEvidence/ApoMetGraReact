@@ -9,16 +9,9 @@ class RegistrationForm extends Component {
   }
   render() {
     return (
-      <div>
-        { (this.props.user._id) ? (
-            <div>
-              <button onClick={() => { 
-                Meteor.logout();
-                this.props.client.resetStore();
-              }}> LogOut </button>
-            </div>
-          ) : (
-            <div>
+      <div className="form-container">
+        { (!this.props.user._id) && (
+            <div className="reg-form-container">
               {
                 (this.state.login) ? 
                 <Login client={this.props.client} /> :
@@ -26,7 +19,7 @@ class RegistrationForm extends Component {
               }
               <button onClick={() => { this.setState({
                 login: !this.state.login
-              })}}>
+              })}} className="btn btn-info">
                 {
                   (this.state.login) ? 
                   'Register' :
