@@ -3,14 +3,22 @@ import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
-import { HttpLink } from 'apollo-link-http';
+import { HttpLink, createHttpLink } from 'apollo-link-http';
 import { ApolloLink, from } from 'apollo-link';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import App from '../../ui/App';
 
+// const httpLink = new HttpLink({
+//   uri: Meteor.absoluteUrl('graphql'),
+// });
+
 const httpLink = new HttpLink({
-  uri: Meteor.absoluteUrl('graphql'),
+  uri: ('/graphql'),
 });
+
+// const httpLink = createHttpLink({
+//   uri: ('/graphql'),
+// });
 
 const authLink = new ApolloLink((operation, forward) => {
   const token = Accounts._storedLoginToken();
@@ -24,7 +32,7 @@ const authLink = new ApolloLink((operation, forward) => {
 
 const cache = new InMemoryCache();
 const client = new ApolloClient({
-  link: from([authLink,httpLink]),
+  link: from([authLink, httpLink]),
   cache,
 }); 
 

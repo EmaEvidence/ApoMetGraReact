@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import { Accounts } from 'meteor/accounts-base';
+import Loader from './Loader';
 
 class Login extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      showLoader: false,
+    }
+  }
 
   login = (event) => {
     event.preventDefault();
     Meteor.loginWithPassword(this.email.value, this.password.value, (error) => {
       if (!error) {
-        this.props.client.resetStore();
+        return this.props.client.resetStore();
+      } else if (error.reason === 'Incorrect password' || 
+      error.reason === 'User not found') {
+        this.setState({
+          showLoader: false,
+        });
+        toast.error('User not found');
       }
-      console.log(error);
     });
   }
 
@@ -27,7 +40,15 @@ class Login extends Component {
         />
         </div>
         <div>
-          <button type="submit" className="btn btn-secondary">Login</button>
+          <Loader showLoader={this.state.showLoader} />
+          <ToastContainer />
+          <button
+            type="submit"
+            onClick={() => this.setState({ showLoader: true})}
+            className="btn btn-secondary"
+          >
+            Sign In
+          </button>
         </div>
       </form>
     )

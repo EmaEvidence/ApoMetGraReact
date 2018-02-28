@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { Accounts } from 'meteor/accounts-base';
+import { ToastContainer, toast } from 'react-toastify';
+import Loader from './Loader';
 
 class RegisterUser extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      showLoader: false,
+    }
+  }
 
   registerUser = (event) => {
     event.preventDefault();  
@@ -11,8 +19,12 @@ class RegisterUser extends Component {
     }, (error) => {
       if (!error) {
         this.props.client.resetStore();
+      } else {
+        toast.error(error.reason);
+        this.setState({
+          showLoader: false,
+        });
       }
-      console.log(error);
     });
   }
 
@@ -32,7 +44,15 @@ class RegisterUser extends Component {
           />
         </div>
         <div>
-          <button type="submit" className="btn btn-secondary">Register User</button>
+          <Loader showLoader={this.state.showLoader} />
+          <ToastContainer />
+          <button
+            type="submit"
+            className="btn btn-secondary"
+            onClick={() => this.setState({ showLoader: true})}
+          >
+            Sign Up
+          </button>
         </div>
       </form>
     )

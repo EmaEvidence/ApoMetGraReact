@@ -22,8 +22,8 @@ class RegistrationForm extends Component {
               })}} className="btn btn-info">
                 {
                   (this.state.login) ? 
-                  'Register' :
-                  'Login'
+                  'Sign Up' :
+                  'Sign In'
                 }
               </button>
             </div>

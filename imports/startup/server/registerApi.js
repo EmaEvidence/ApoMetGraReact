@@ -20,9 +20,14 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 //  hkjhkddsklsfdfshhjgjhg
-createApolloServer({schema}, {
-  configServer: (graphQLServer) => {
-    graphQLServer.use(cors())
-  }
+const corsOptions = {
+  origin: 'https://resolutionzapp.herokuapp.com/',
+  optionsSuccessStatus: 200
+}
+createApolloServer({ schema }, {
+  configServer(app) {
+      app.use(cors(corsOptions))
+  },
+  graphiql: true,
+  debug: true,
 });
-
