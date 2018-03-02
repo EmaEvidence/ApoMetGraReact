@@ -11,4 +11,6 @@ type Query {
 
 type Mutation {
   createResolution(name: String!): Resolution
+  deleteResolution(_id: String): Resolution
+  editResolution(_id: String, name: String): Resolution
 }

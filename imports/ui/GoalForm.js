@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { ToastContainer, toast } from 'react-toastify';
 
 const createGoal = gql`
   mutation createGoal($name: String!, $resolutionId: String!) {
@@ -11,33 +12,37 @@ const createGoal = gql`
 `;
 
 class GoalForm extends Component {
-  state = {
-    error: null,
-  }
   submitForm = () => {
-    this.props.createGoal({
-      variables: {
-        name: this.name.value,
-        resolutionId: this.props.resolutionId
-      }
-    }).then((data) => {
-      this.name.value = '';
-    }).catch((error) => {
-      this.setState({
-        error: error.message,
+    if (this.name.value !== '' && 
+    this.name.value.trim().length !== 0) {
+      this.props.createGoal({
+        variables: {
+          name: this.name.value,
+          resolutionId: this.props.resolutionId
+        }
+      }).then((data) => {
+        this.name.value = '';
+      }).catch((error) => {
+          toast.error(error.reason);
       });
-    });
-  };
+    } else {
+      toast.error('Goal can not be empty');
+    }
+  }
+
+  submitFormWithEnter = (event) => {
+    if(event.which === 13) {
+      this.submitForm();
+    } 
+  }
 
   render() {
     return (
       <div className="goal-form">
-        {
-          this.state.error && <p>{ this.state.error}</p>
-        }
         <input
           type="text" placeholder="Type your Goal"
           ref={(input) => { this.name = input}}
+          onKeyUp={this.submitFormWithEnter}
         />
         <button onClick={this.submitForm} className="btn btn-secondary">Submit</button>
       </div>

@@ -34,11 +34,18 @@ body {
 .resolution-container {
   margin-top: 8%;
   width: 50%;
+  height: 80vh;
+  overflow: auto;
+  min-width: 20rem;
 }
 
 .logout {
-  right: 0%;
+  right: 2rem;
+  top: 1rem;
   width: auto;
+  position: absolute;
+  margin: auto ;
+  vertical-align: middle;
 }
 
 .resolution-form-container {
@@ -80,14 +87,30 @@ body {
 }
 
 .resolution-control button {
-  width: auto;
-  color: teal;
+  width: 2rem;
+  height: 2rem;
   margin: 1px;
+  background: none;
+  border: none;
+  opacity: 0.6;
+  cursor: pointer;
+  outline: none;
+}
+
+.resolution-control button:hover {
+  opacity: 1;
+}
+
+.resolution-control button img {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: auto;
+  background: none;
+  border: none;
 }
 
 .resolution-name {
   font-size: 20px;
-  /* background: whitesmoke; */
   color: teal;
   margin-bottom: 1%;
   border: 1px solid thistle;
@@ -111,7 +134,7 @@ body {
 }
 
 .goal-form input {
-  padding-left: 2%; 
+  padding: 0 2%; 
   width: 68%;
 }
 
@@ -125,10 +148,30 @@ body {
 
 .individual-goal {
   vertical-align: middle;
+  display: flex;
 }
 
 .individual-goal label {
   width: 100%;
+  margin: auto;
+}
+
+.individual-goal button {
+  width: auto;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.individual-goal img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.individual-goal button:hover {
+  opacity: 1;
 }
 
 .loader-container {
@@ -140,4 +183,60 @@ body {
 }
 button {
   outline: none;
+}
+.edit-form {
+  text-align: center;
+  color: teal;
+}
+.edit-form form {
+  width: 85%;
+  margin: auto;
+}
+.edit-form input {
+  width: 98%;
+  margin: 2%;
+  padding: 0 2%;
+  color: teal;
+}
+.edit-form form h5 {
+  padding: 0%;
+  display: flex;
+  justify-content: space-between;
+}
+.edit-form form h5 span {
+  text-align: left;
+  padding: 0 2%;
+  width: 50%;
+}
+.edit-form form h5 button {
+  width: 20%;
+  text-align: right;
+  outline: none;
+}
+.no-resolution-wrapper {
+  text-align: center;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.no-resolution-wrapper b {
+  margin: auto;
+  font-size: 4rem;
+  color: teal;
+}
+.footer {
+  position: absolute;
+  bottom: 0%;
+  text-align: center;
+  color: teal;
+}
+
+.brand-container {
+  width: auto;
+  display: flex;
+}
+
+.resolution-form {
+  flex: 0.8;
 }

@@ -19,7 +19,7 @@ const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
 });
-//  hkjhkddsklsfdfshhjgjhg
+//  hkjhkdfdghjdfsdf
 const corsOptions = {
   origin: 'https://resolutionzapp.herokuapp.com/',
   optionsSuccessStatus: 200

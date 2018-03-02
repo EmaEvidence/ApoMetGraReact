@@ -34,6 +34,20 @@ export default {
         return  Resolutions.findOne(resolutionId);
       }
       throw new Error('Unauthorized');
+    },
+    deleteResolution(obj, { _id }, { userId }) {
+      const result = Resolutions.remove({
+        _id
+      });
+      return { _id };
+    },
+    editResolution(obj, { _id, name }, { userId }) {
+      Resolutions.update(_id, {
+        $set: {
+          name
+        }
+      });
+      return Resolutions.findOne(_id);
     }
   },
 };

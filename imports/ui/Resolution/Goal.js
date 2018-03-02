@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import { cursorTo } from 'readline';
 
 class Goal extends Component {
@@ -11,6 +11,15 @@ class Goal extends Component {
       }
     });
   }
+
+  deleteGoal = (id) => {
+    this.props.deleteGoal({
+      variables: {
+        id
+      }
+    });
+  }
+
   render() {
     return (
       <li className="individual-goal">
@@ -21,6 +30,11 @@ class Goal extends Component {
             cursor: 'pointer'
           }}>{this.props.goal.name}</span>
         </label>
+        <button onClick={() => { this.deleteGoal(this.props.goal._id)}}>
+          <img 
+            src="http://res.cloudinary.com/damc3mj5u/image/upload/v1520250033/delete_grey_192x192_bhnl3p.png"
+          />
+        </button>
       </li>
     )
   }
@@ -34,9 +48,25 @@ const toggleGoal = gql`
   }
 `;
 
-export default graphql(toggleGoal, {
+const deleteGoal = gql`
+  mutation deleteGoal($id: String!) {
+    deleteGoal(_id: $id) {
+      _id
+    }
+  }
+`;
+
+export default compose(
+  graphql(toggleGoal, {
   name: "toggleGoal",
   options: {
     refetchQueries: ["Resolutions"]
   }
-})(Goal);
+  }),
+  graphql(deleteGoal, {
+    name: "deleteGoal",
+    options: {
+      refetchQueries: ["Resolutions"]
+    }
+  }),
+)(Goal);

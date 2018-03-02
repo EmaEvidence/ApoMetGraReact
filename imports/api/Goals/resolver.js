@@ -20,6 +20,12 @@ export default {
           completed: !goal.completed
         }
       })
+    },
+    deleteGoal(obj, { _id }) {
+      const goal = Goals.remove({
+        _id
+      });
+      return { _id };
     }
   },
 }
